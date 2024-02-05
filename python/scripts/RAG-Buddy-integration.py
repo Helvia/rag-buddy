@@ -8,7 +8,7 @@ openai_api_key = config('OPENAI_API_KEY', default='', cast=str) # Replace with y
 # Your RAG Buddy key
 rag_buddy_key = config('RAG_BUDDY_KEY', default='', cast=str) # Replace with your actual RAG Buddy key
 # Needed for RAG Cache integration
-base_url = "https://rag-cache-proxy.dev.helvia.ai/v1"
+base_url = "https://api.ragbuddy.ai/proxy/ragc/v1"
 headers = {"Helvia-RAG-Buddy-Token": rag_buddy_key}
 
 # System messages
