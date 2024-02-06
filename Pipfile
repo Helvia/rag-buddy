@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-openai = "==openai==1.*"
+openai = "==1.*"
 python-decouple = "==3.*"
 
 [dev-packages]
