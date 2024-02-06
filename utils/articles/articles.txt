@@ -1,0 +1,30 @@
+## ID:UUID1    I've lost my card. What should I do? (snappi Card)
+snappi is keeping you safe! You can always freeze your card directly from the app!
+Just follow the next steps:
+1️⃣ Choose the card you lost from the available cards
+2️⃣ Tap on the ""Freeze"" button. From now on your personal information and money are safe.
+3️⃣ Once you are sure that your card is lost, tap on the ""Lost Card?"" button and follow the steps.
+
+## ID:UUID2    Card menu (snappi Card)
+card
+
+## ID:UUID3    How can I change my card's PIN? (snappi Card)
+You can reset your card's PIN by following the next steps:
+
+1️⃣ Choose the card you need
+2️⃣ Tap on “Settings” button 
+3️⃣ Choose "Manage your PIN"
+4️⃣ Choose "Reset your PIN"
+
+We will make a quick check to confirm your identity, and once it is completed you have a new PIN!✌️
+
+## ID:UUID4    My card has expired, what should I do? (snappi Card)
+In this case, the card will have to be reissued. Would you like me to connect you with a member of our team to complete the process? 👨‍🚀
+
+## ID:UUID5    I want a physical card, how can I receive it? (snappi Card)
+💳 You can request a physical snappi card at any time, through the snappi app. 
+1. Log in to your snappi account → Cards → Card Services.
+2. Tap “Ask for Plastic”.
+3. Follow the process that will appear on your screen.
+
+That's it! Your physical card will be in your hands within 7-10 working days.

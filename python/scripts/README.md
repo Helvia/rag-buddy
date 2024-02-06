@@ -38,3 +38,11 @@ Copy the newly generated API key for use in the next step.
 Navigate to the .env.sample file and create a copy called .env . Fill in required environmental variables.
 
 To execute the script navigate to the python/scripts directory and execute $ python rag-buddy-ragc-proxy.py or execute $ python -m python.scripts.rag-buddy-ragc-proxy 
+To execute the script navigate to the python/scripts directory and execute $ python RAG-Buddy-integration.py
+
+
+## rag-buddy-ragc-proxy
+
+Use python ragc_api_client.py --help to display the script's usage information:
+
+To execute the script use $ python -m python.scripts.ragc_api_client  "Credit card not valid anymore?" "./utils/articles/articles.txt" --cache-control  no-store
