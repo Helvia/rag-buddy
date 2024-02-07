@@ -41,8 +41,11 @@ To execute the script navigate to the python/scripts directory and execute $ pyt
 To execute the script navigate to the python/scripts directory and execute $ python RAG-Buddy-integration.py
 
 
-## rag-buddy-ragc-proxy
+## ragc_api_client
 
 Use python ragc_api_client.py --help to display the script's usage information:
 
-To execute the script use $ python -m python.scripts.ragc_api_client  "Credit card not valid anymore?" "./utils/articles/articles.txt" --cache-control  no-store
+To execute the script use $ python -m python.scripts.ragc_api_client  "./utils/articles/articles.txt" --cache-control  no-store
+or navigate to the python/scripts directory and use $ python ragc_api_client.py  "../../utils/articles/articles.txt" --cache-control  no-store
+
+As a prompt use : "Credit card not valid anymore?"

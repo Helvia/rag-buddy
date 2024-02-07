@@ -2,6 +2,7 @@ import argparse
 import asyncio
 import json
 import re
+import sys
 import httpx
 from typing import List, Optional, Tuple, Any, Dict
 from decouple import config
@@ -218,9 +219,8 @@ if __name__ == "__main__":
 
         return articles
 
-    # Run like: python -m python.scripts.ragc_api_client  "Credit card not valid anymore?" "./utils/articles/articles.txt" --cache-control  no-store
+    # Run like: python -m python.scripts.ragc_api_client "./utils/articles/articles.txt" --cache-control  no-store
     parser = argparse.ArgumentParser(description="Process a prompt for completion.")
-    parser.add_argument("prompt", help="Prompt for completion")
     parser.add_argument("--stream", action="store_true", help="Enable streaming")
     parser.add_argument(
         "--cache-control",
@@ -239,18 +239,24 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
+    
+    # After parsing arguments:
+    print("Please enter the prompt:")
+
+    # Read prompt from standard input
+    prompt = sys.stdin.readline().rstrip()
 
     articles = read_articles_from_file(args.articles_file)  # Read articles from file
 
     if args.stream:
         asyncio.run(
             test_rag_completion_async_stream(
-                args.prompt, articles, args.cache_control, args.proxy
+                prompt, articles, args.cache_control, args.proxy
             )
         )
     else:
         asyncio.run(
             test_rag_completion_async(
-                args.prompt, articles, args.cache_control, args.proxy
+                prompt, articles, args.cache_control, args.proxy
             )
         )
