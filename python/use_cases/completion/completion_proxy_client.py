@@ -118,7 +118,6 @@ if __name__ == "__main__":
 
     # Read prompt from standard input
     prompt = sys.stdin.readline().rstrip()
-    args.stream = True
 
     if args.stream:
         asyncio.run(test_completion_async_stream(prompt, args.cache_control))
