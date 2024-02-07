@@ -1,7 +1,5 @@
 # RAG-Buddy Python Scripts
 
-# RAG-Buddy-integration Python Script
-
 Assumptions
 This Quickstart assumes the following prerequisites are met:
 
@@ -41,7 +39,7 @@ Navigate to the .env.sample file and create a copy called .env . Fill in require
 
 To execute the script navigate to the python/scripts directory and execute $ python rag-buddy-ragc-proxy.py or execute $ python -m python.scripts.rag-buddy-ragc-proxy
 
-# Completion Proxy Client Python Script
+## completion_proxy_client
 
 Navigate to the python/scripts directory.
 

@@ -40,16 +40,22 @@ async def test_completion_async_stream(prompt: str, cache_control: str):
     collected_chunks = []
     completion_text = ""
     # iterate through the stream, if it breaks, the test failed
+    print("\n")
     async for chunk in stream:
         collected_chunks.append(chunk)
         finish_reason = chunk.choices[0].finish_reason
         if finish_reason is not None:
             break
         chunk_text = chunk.choices[0].text
-        print("\n")
         print(chunk_text)
         completion_text += chunk_text
+    print("\n")
     print(raw_response.headers)
+
+    if "Helvia-RAG-Buddy-Cache-Status" in raw_response.headers:
+        cache_status = raw_response.headers["Helvia-RAG-Buddy-Cache-Status"]
+        cache_hit = int(cache_status) if cache_status not in ["None", None] else None
+        print(f"Cache hit: {cache_hit}")
 
 async def test_completion_async(prompt: str, cache_control: str):
     # Pass the cache control header, if provided
@@ -86,6 +92,11 @@ async def test_completion_async(prompt: str, cache_control: str):
     print(completion.model_dump_json(indent=2))
     print(raw_response.headers)
 
+    if "Helvia-RAG-Buddy-Cache-Status" in raw_response.headers:
+        cache_status = raw_response.headers["Helvia-RAG-Buddy-Cache-Status"]
+        cache_hit = int(cache_status) if cache_status not in ["None", None] else None
+        print(f"Cache hit: {cache_hit}")
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process a prompt for completion.")
 
@@ -107,6 +118,7 @@ if __name__ == "__main__":
 
     # Read prompt from standard input
     prompt = sys.stdin.readline().rstrip()
+    args.stream = True
 
     if args.stream:
         asyncio.run(test_completion_async_stream(prompt, args.cache_control))
