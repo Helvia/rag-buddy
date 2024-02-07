@@ -1,5 +1,4 @@
 # RAG-Buddy Python Notebooks
-# RAG-Buddy Python Scripts
 
 Assumptions
 This Quickstart assumes the following prerequisites are met:
@@ -11,15 +10,15 @@ Your use case involves RAG with the generation of a single citation within the r
 Create a Cache
 To begin using RAG-Buddy, a new project must be created. If you haven’t set up a project yet, follow these steps:
 
-Visit the [RAG-Buddy Dashboard]('https://rag-buddy.dev.helvia.ai/login') at RAG-Buddy Dashboard and sign up for an account if you don’t already have one.
+Visit the [RAG-Buddy Console]('https://www.ragbuddy.ai/') and sign up for an account if you don’t already have one.
 
 Once you’re signed in:
 
-On your dashboard, click [Create a new project].
+On your console, click [Create a new project].
 Name your project.
 Select OpenAI:ADA2 as your embedding model.
 Select OpenAI Chat Completions API as your LLM provider.
-Select the 'RAG' cache type
+Select the 'RAG+Citation' cache type.
 Click Create Project to create your project.
 Next, you’ll need an API key for your cache:
 
@@ -27,4 +26,4 @@ Navigate to the Services tab.
 Scroll down to the API Keys for Cache section.
 Click on Create new key.
 Assign a name to your key and select Create API Key.
-Copy the newly generated API key for use in the next step.
+Copy the newly generated API key for use in notebook.
