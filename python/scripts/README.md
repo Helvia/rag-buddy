@@ -8,24 +8,24 @@ You are using the OpenAI Python client. Installation and setup instructions can 
 Your use case involves RAG with the generation of a single citation within the response.
 
 Python and pip installed in your system.
-Pipenv installed, if not execute $ pip install virtualenv
+pipenv installed, if not execute $ pip install pipenv
 
-Activate the virtualenv using $ pipenv shell
+Download the necessary packages and create the pipenv using $ pipenv install
 
-Download the necessary packages using $ pipenv install
+Activate the pipenv using $ pipenv shell
 
 Create a Cache
 To begin using RAG-Buddy, a new project must be created. If you haven’t set up a project yet, follow these steps:
 
-Visit the [RAG-Buddy Dashboard]('https://rag-buddy.dev.helvia.ai/login') at RAG-Buddy Dashboard and sign up for an account if you don’t already have one.
+Visit the [RAG-Buddy Console]('https://www.ragbuddy.ai/') and sign up for an account if you don’t already have one.
 
 Once you’re signed in:
 
-On your dashboard, click [Create a new project].
+On your console, click [Create a new project].
 Name your project.
 Select OpenAI:ADA2 as your embedding model.
 Select OpenAI Chat Completions API as your LLM provider.
-Select the 'RAG' cache type
+Select the 'RAG+Citation' cache type.
 Click Create Project to create your project.
 Next, you’ll need an API key for your cache:
 
@@ -35,6 +35,6 @@ Click on Create new key.
 Assign a name to your key and select Create API Key.
 Copy the newly generated API key for use in the next step.
 
-Navigate to the .env file and fill in the OPENAI_API_KEY and RAG_BUDDY_KEY
+Navigate to the .env.sample file and create a copy called .env . Fill in required environmental variables.
 
-To execute the script navigate to the python/scripts directory and execute $ python RAG-Buddy-integration.py
+To execute the script navigate to the python/scripts directory and execute $ python rag-buddy-ragc-proxy.py or execute $ python -m python.scripts.rag-buddy-ragc-proxy 
