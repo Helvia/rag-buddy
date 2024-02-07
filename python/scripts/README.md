@@ -37,4 +37,10 @@ Copy the newly generated API key for use in the next step.
 
 Navigate to the .env.sample file and create a copy called .env . Fill in required environmental variables.
 
+## rag-buddy-ragc-proxy
+
 To execute the script navigate to the python/scripts directory and execute $ python rag-buddy-ragc-proxy.py or execute $ python -m python.scripts.rag-buddy-ragc-proxy 
+
+## rag-buddy-ragc-proxy-with-response-headers
+
+To execute the script navigate to the python/scripts directory and execute $ python rag-buddy-ragc-proxy-with-response-headers.py or execute $ python -m python.scripts.rag-buddy-ragc-proxy-with-response-headers 
