@@ -44,4 +44,4 @@ To execute the script navigate to the python/scripts directory and execute $ pyt
 Use $ python -m python.scripts.ragc_proxy_client --help to display the script's usage information.
 
 To execute the script use $ python -m python.scripts.ragc_proxy_client --cache-control no-cache no-store
-and then enter the prompt.
+and then enter the prompt e.g. "I lost my card" .
