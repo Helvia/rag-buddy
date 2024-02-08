@@ -38,3 +38,11 @@ Copy the newly generated API key for use in the next step.
 Navigate to the .env.sample file and create a copy called .env . Fill in required environmental variables.
 
 To execute the script navigate to the python/scripts directory and execute $ python rag-buddy-ragc-proxy.py or execute $ python -m python.scripts.rag-buddy-ragc-proxy 
+
+## tc_api_client
+
+Use $ python tc_api_client.py --help or $ % python -m python.scripts.tc_api_client --help to display the script's usage information
+
+To execute the script use $ python -m python.scripts.tc_api_client --cache-control  no-store
+or navigate to the python/scripts directory and use $ python tc_api_client.py --cache-control  no-store
+and then enter the selected prompt e.g. "Credit card not valid anymore?" .
