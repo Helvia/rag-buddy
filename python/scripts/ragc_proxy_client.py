@@ -1,6 +1,5 @@
 import argparse
 import asyncio
-import logging
 import sys
 import openai
 from openai.types.chat import ChatCompletion
