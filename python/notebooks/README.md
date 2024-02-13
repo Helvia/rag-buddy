@@ -1,28 +1,29 @@
 # RAG-Buddy Python Notebooks
+### Assumptions
+- This Quickstart assumes the following prerequisites are met:
 
-Assumptions
-This Quickstart assumes the following prerequisites are met:
-
-You have an active OpenAI API key. If you do not possess one, please obtain it from [OpenAI]('https://platform.openai.com/api-keys').
+1. You have an active OpenAI API key. If you do not possess one, please obtain it from [OpenAI]('https://platform.openai.com/api-keys').
+You are using the OpenAI Python client. Installation and setup instructions can be found in the repository.
 Your use case involves RAG with the generation of a single citation within the response.
 
-Create a Cache
+### Create a Cache
 To begin using RAG-Buddy, a new project must be created. If you haven’t set up a project yet, follow these steps:
 
 Visit the [RAG-Buddy Console]('https://www.ragbuddy.ai/') and sign up for an account if you don’t already have one.
 
-Once you’re signed in:
+ 1. Once you’re signed in:
 
-On your console, click [Create a new project].
-Name your project.
-Select OpenAI:ADA2 as your embedding model.
-Select OpenAI Chat Completions API as your LLM provider.
-Select the 'RAG+Citation' cache type.
-Click Create Project to create your project.
-Next, you’ll need an API key for your cache:
+    1. On your console, click [Create a new project].
+    2. Name your project.
+    3. Select OpenAI:ADA2 as your embedding model.
+    4. Select OpenAI Chat Completions API as your LLM provider.
+    5. Select the 'RAG+Citation' cache type.
+    6. Click Create Project to create your project.
 
-Navigate to the Services tab.
-Scroll down to the API Keys for Cache section.
-Click on Create new key.
-Assign a name to your key and select Create API Key.
-Copy the newly generated API key for use in notebook.
+2. Next, you’ll need an API key for your cache:
+
+    1. Navigate to the Services tab.
+    2. Scroll down to the API Keys for Cache section.
+    3. Click on Create new key.
+    4. Assign a name to your key and select Create API Key.
+    5. Copy the newly generated API key for use in the notebook.
