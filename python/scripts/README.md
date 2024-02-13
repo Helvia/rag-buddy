@@ -1,50 +1,58 @@
 # RAG-Buddy Python Scripts
 
-Assumptions
-This Quickstart assumes the following prerequisites are met:
+### Assumptions
+- This Quickstart assumes the following prerequisites are met:
 
-You have an active OpenAI API key. If you do not possess one, please obtain it from [OpenAI]('https://platform.openai.com/api-keys').
+1. You have an active OpenAI API key. If you do not possess one, please obtain it from [OpenAI]('https://platform.openai.com/api-keys').
 You are using the OpenAI Python client. Installation and setup instructions can be found in the repository.
 Your use case involves RAG with the generation of a single citation within the response.
 
-Python and pip installed in your system.
+2. Python and pip installed in your system.
 pipenv installed, if not execute $ pip install pipenv
 
-Download the necessary packages and create the pipenv using $ pipenv install
+3. Download the necessary packages and create the pipenv using $ pipenv install
 
-Activate the pipenv using $ pipenv shell
+4. Activate the pipenv using $ pipenv shell
 
-Create a Cache
+### Create a Cache
 To begin using RAG-Buddy, a new project must be created. If you haven’t set up a project yet, follow these steps:
 
 Visit the [RAG-Buddy Console]('https://www.ragbuddy.ai/') and sign up for an account if you don’t already have one.
 
-Once you’re signed in:
+ 1. Once you’re signed in:
 
-On your console, click [Create a new project].
-Name your project.
-Select OpenAI:ADA2 as your embedding model.
-Select OpenAI Chat Completions API as your LLM provider.
-Select the 'RAG+Citation' cache type.
-Click Create Project to create your project.
-Next, you’ll need an API key for your cache:
+    1. On your console, click [Create a new project].
+    2. Name your project.
+    3. Select OpenAI:ADA2 as your embedding model.
+    4. Select OpenAI Chat Completions API as your LLM provider.
+    5. Select the 'RAG+Citation' cache type.
+    6. Click Create Project to create your project.
 
-Navigate to the Services tab.
-Scroll down to the API Keys for Cache section.
-Click on Create new key.
-Assign a name to your key and select Create API Key.
-Copy the newly generated API key for use in the next step.
+2. Next, you’ll need an API key for your cache:
 
-Navigate to the .env.sample file and create a copy called .env . Fill in required environmental variables.
+    1. Navigate to the Services tab.
+    2. Scroll down to the API Keys for Cache section.
+    3. Click on Create new key.
+    4. Assign a name to your key and select Create API Key.
+    5. Copy the newly generated API key for use in the next step.
 
-To execute the script navigate to the python/scripts directory and execute $ python rag-buddy-ragc-proxy.py or execute $ python -m python.scripts.rag-buddy-ragc-proxy
+3. Navigate to the .env.sample file and create a copy called .env . Fill in required environmental variables.
+
+
+## rag-buddy-ragc-proxy
+
+- To execute the script follow these steps:
+    1. Navigate to the python/scripts directory
+    2. Use ```$ python rag-buddy-ragc-proxy.py``` 
+
 
 ## completion_proxy_client
 
-Navigate to the python/scripts directory.
+- To display the script's usage information:
+    1. Navigate to the python/scripts directory
+    2. Use ```$ python completion_proxy_client.py --help``` 
 
-Use python completion_proxy_client.py --help   to display the script's usage information:
-
-To execute the script use $ python completion_proxy_client.py --stream --cache-control no-cache
-
-After that fill in the requested prompt in the command line.
+- To execute the script follow these steps:
+    1. Navigate to the python/scripts directory
+    2. Use ```$ python completion_proxy_client.py --stream --cache-control no-cache``` 
+    3. Fill in the requested prompt in the command line.
