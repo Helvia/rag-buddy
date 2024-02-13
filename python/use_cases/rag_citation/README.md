@@ -7,7 +7,7 @@
 
 - To execute the script follow these steps:
     1. Navigate to the python directory
-    2. Use `$ python use_cases/rag_citation/rag-buddy-ragc-proxy.py`
+    2. Use `$ python use_cases/rag_citation/rag_buddy_ragc_proxy.py`
 
 ## RAG-Buddy-RAGC-basic-integration
 
