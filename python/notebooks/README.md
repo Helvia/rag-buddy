@@ -4,7 +4,6 @@ Assumptions
 This Quickstart assumes the following prerequisites are met:
 
 You have an active OpenAI API key. If you do not possess one, please obtain it from [OpenAI]('https://platform.openai.com/api-keys').
-You are using the OpenAI Python client. Installation and setup instructions can be found in the repository.
 Your use case involves RAG with the generation of a single citation within the response.
 
 Create a Cache
