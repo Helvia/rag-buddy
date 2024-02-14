@@ -1,40 +1,14 @@
-# RAG-Buddy Python Scripts
+# Rag_Citation
 
-Assumptions
-This Quickstart assumes the following prerequisites are met:
+### Assumptions
+- The user has read and followed the steps in the README file of the python directory.
 
-You have an active OpenAI API key. If you do not possess one, please obtain it from [OpenAI]('https://platform.openai.com/api-keys').
-You are using the OpenAI Python client. Installation and setup instructions can be found in the repository.
-Your use case involves RAG with the generation of a single citation within the response.
+## rag-buddy-ragc-proxy
 
-Python and pip installed in your system.
-pipenv installed, if not execute $ pip install pipenv
+- To execute the script follow these steps:
+    1. Navigate to the python directory
+    2. Use `python use_cases/rag_citation/rag_buddy_ragc_proxy.py`
 
-Download the necessary packages and create the pipenv using $ pipenv install
+## RAG-Buddy-RAGC-basic-integration
 
-Activate the pipenv using $ pipenv shell
-
-Create a Cache
-To begin using RAG-Buddy, a new project must be created. If you haven’t set up a project yet, follow these steps:
-
-Visit the [RAG-Buddy Console]('https://www.ragbuddy.ai/') and sign up for an account if you don’t already have one.
-
-Once you’re signed in:
-
-On your console, click [Create a new project].
-Name your project.
-Select OpenAI:ADA2 as your embedding model.
-Select OpenAI Chat Completions API as your LLM provider.
-Select the 'RAG+Citation' cache type.
-Click Create Project to create your project.
-Next, you’ll need an API key for your cache:
-
-Navigate to the Services tab.
-Scroll down to the API Keys for Cache section.
-Click on Create new key.
-Assign a name to your key and select Create API Key.
-Copy the newly generated API key for use in the next step.
-
-Navigate to the .env.sample file and create a copy called .env . Fill in required environmental variables.
-
-To execute the script navigate to the python/scripts directory and execute $ python rag-buddy-ragc-proxy.py or execute $ python -m python.scripts.rag-buddy-ragc-proxy 
+- To execute the notebook simply open the notebook file and press `Run All`.
