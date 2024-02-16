@@ -35,7 +35,7 @@ async def chat_completion(
     # Add extra keyword arguments to the payload
     payload.update(kwargs)
 
-    proxy_url = "https://api.ragbuddy.ai/ragc/v1"
+    proxy_url = f"{config('PROXY_HOST', default='', cast=str)}/ragc/{config('OPENAI_VERSION', default='', cast=str)}"
     if payload.get("stream"):
         async with httpx.AsyncClient() as client:
             async with client.stream(
@@ -241,10 +241,10 @@ if __name__ == "__main__":
     if args.stream:
         asyncio.run(
             rag_completion_async_stream(
-                args.prompt, articles, args.cache_control)
+                prompt, articles, args.cache_control)
         )
     else:
         asyncio.run(
             rag_completion_async(
-                args.prompt, articles, args.cache_control)
+                prompt, articles, args.cache_control)
         )
