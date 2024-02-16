@@ -5,9 +5,10 @@ import openai
 from openai.types import Completion
 from decouple import config
 
-helvia_rag_cache_token = config("RAG_BUDDY_KEY")
-base_url = "https://api.ragbuddy.ai/proxy/sem/v1"
 openai_api_key = config("OPENAI_API_KEY")
+helvia_rag_cache_token = config("RAG_BUDDY_TOKEN")
+base_url = f"{config('PROXY_HOST', default='', cast=str)}/proxy/sem/{config('OPENAI_VERSION', default='', cast=str)}"
+
 
 async def test_completion_async_stream(prompt: str, cache_control: str):
     # Pass the cache control header, if provided

@@ -6,9 +6,9 @@ from decouple import config
 openai_api_key = config('OPENAI_API_KEY', default='', cast=str) # Replace with your actual API key
 
 # Your RAG Buddy key
-rag_buddy_key = config('RAG_BUDDY_KEY', default='', cast=str) # Replace with your actual RAG Buddy key
+rag_buddy_key = config('RAG_BUDDY_TOKEN', default='', cast=str) # Replace with your actual RAG Buddy key
 # Needed for RAG Cache integration
-base_url = "https://api.ragbuddy.ai/proxy/ragc/v1"
+base_url = f"{config('PROXY_HOST', default='', cast=str)}/proxy/ragc/{config('OPENAI_VERSION', default='', cast=str)}"
 headers = {"Helvia-RAG-Buddy-Token": rag_buddy_key}
 
 # System messages
