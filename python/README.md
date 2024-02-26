@@ -41,4 +41,4 @@ Visit the [RAG-Buddy Console]('https://www.ragbuddy.ai/') and sign up for an acc
 3. Copy the .env.sample file and create a .env by executing `cp .env.sample .env`.
 Then fill in the required environmental variables.
 
-### For more information regarding each use case, consider having a look at our [documentation]('https://helviaai.mintlify.app/introduction').
+### For more information regarding each use case, consider having a look at our [documentation]('https://docs.ragbuddy.ai').

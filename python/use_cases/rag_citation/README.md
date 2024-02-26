@@ -21,5 +21,5 @@
 
 - To execute the script follow these steps:
     1. Navigate to the python directory
-    2. Use `python use_cases/rag_citation/ragc_api_client.py "use_cases/utils/articles.txt"`
+    2. Use `python use_cases/rag_citation/ragc_api_client.py "use_cases/data/articles.txt"`
     3. Enter a prompt, for example `Credit card not valid anymore?`

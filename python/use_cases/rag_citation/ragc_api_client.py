@@ -216,7 +216,6 @@ if __name__ == "__main__":
 
         return articles
 
-    # Run like: python -m python.scripts.ragc_api_client "./utils/articles/articles.txt" --cache-control  no-store
     parser = argparse.ArgumentParser(description="Process a prompt for completion.")
     parser.add_argument("--stream", action="store_true", help="Enable streaming")
     parser.add_argument(
