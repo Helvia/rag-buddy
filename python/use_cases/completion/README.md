@@ -1,7 +1,7 @@
 # Completion
 
 ### Assumptions
-- The user has read and followed the steps in the README file of the python directory.
+- The user has read and followed the steps in the [README]("https://github.com/Helvia/rag-buddy/blob/develop/python/README.md") file of the python directory.
 
 ## completion_proxy_client
 
