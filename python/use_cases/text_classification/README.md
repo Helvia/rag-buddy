@@ -1,4 +1,4 @@
-README for text classification
+# Text_Classification
 
 ### Assumptions
 - The user has read and followed the steps in the [README]("https://github.com/Helvia/rag-buddy/blob/develop/python/README.md") file of the python directory.
