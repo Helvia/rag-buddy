@@ -10,23 +10,19 @@ from decouple import config
 async def chat_completion(
     headers: Dict[str, str],
     remote_llm_url: str,
-    system_instructions: str,
-    classes: List[str],
     user_message: str,
     **kwargs: Any,
 ) -> Tuple[Any, Dict[str, str]]:
     # Base payload
     payload = {
         "remote_llm_url": remote_llm_url,
-        "system_instructions": system_instructions,
-        "classes": classes,
         "user_message": user_message,
     }
 
     # Add extra keyword arguments to the payload
     payload.update(kwargs)
 
-    api_url = "https://api.ragbuddy.ai/tc/v1"
+    api_url = f"{config('PROXY_HOST', default='', cast=str)}/tc/{config('OPENAI_VERSION', default='', cast=str)}"
 
     if payload.get("stream"):
         async with httpx.AsyncClient() as client:
@@ -99,7 +95,7 @@ async def chat_completion(
 
 
 async def call_RB(
-    system_instructions, classes, user_message, cache_control, stream
+    user_message, cache_control, stream
 ):
     helvia_rag_cache_token = config("RAG_BUDDY_TOKEN")
 
@@ -125,8 +121,6 @@ async def call_RB(
     content, response_headers = await chat_completion(
         headers,
         remote_llm_url,
-        system_instructions,
-        classes,
         user_message,
         model=model,
         temperature=temperature,
@@ -142,12 +136,12 @@ async def call_RB(
 
 
 async def test_tc_async_stream(
-    prompt: str, system_instructions: str, classes: List, cache_control: str
+    prompt: str, cache_control: str
 ):
     user_message = prompt
 
     completion, cache_hit = await call_RB(
-        system_instructions, classes, user_message, cache_control, True
+        user_message, cache_control, True
     )
 
     if cache_hit is not None:
@@ -158,14 +152,12 @@ async def test_tc_async_stream(
 
 async def test_tc_async(
     prompt: str,
-    system_instructions: str,
-    classes: List,
     cache_control: str,
 ):
     user_message = prompt
 
     completion, cache_hit = await call_RB(
-        system_instructions, classes, user_message, cache_control, False
+        user_message, cache_control, False
     )
 
     if cache_hit is not None:
@@ -201,93 +193,10 @@ if __name__ == "__main__":
     # Read prompt from standard input
     prompt = sys.stdin.readline().rstrip()
 
-    system_instructions = """You are an expert assistant in the field of customer service. Your task is to help workers in the customer service department of a company.\nYour task is to classify the customer's question in order to help the customer service worker to answer the question. In order to help the worker, you MUST respond with the name of one of the following classes you know.\nIn case you reply with something else, you will be penalized.\nThe classes are the following:"""
-    classes = [
-        "activate_my_card",
-        "age_limit",
-        "apple_pay_or_google_pay",
-        "atm_support",
-        "automatic_top_up",
-        "balance_not_updated_after_bank_transfer",
-        "balance_not_updated_after_cheque_or_cash_deposit",
-        "beneficiary_not_allowed",
-        "cancel_transfer",
-        "card_about_to_expire",
-        "card_acceptance",
-        "card_arrival",
-        "card_delivery_estimate",
-        "card_linking",
-        "card_not_working",
-        "card_payment_fee_charged",
-        "card_payment_not_recognised",
-        "card_payment_wrong_exchange_rate",
-        "card_swallowed",
-        "cash_withdrawal_charge",
-        "cash_withdrawal_not_recognised",
-        "change_pin",
-        "compromised_card",
-        "contactless_not_working",
-        "country_support",
-        "declined_card_payment",
-        "declined_cash_withdrawal",
-        "declined_transfer",
-        "direct_debit_payment_not_recognised",
-        "disposable_card_limits",
-        "edit_personal_details",
-        "exchange_charge",
-        "exchange_rate",
-        "exchange_via_app",
-        "extra_charge_on_statement",
-        "failed_transfer",
-        "fiat_currency_support",
-        "get_disposable_virtual_card",
-        "get_physical_card",
-        "getting_spare_card",
-        "getting_virtual_card",
-        "lost_or_stolen_card",
-        "lost_or_stolen_phone",
-        "order_physical_card",
-        "passcode_forgotten",
-        "pending_card_payment",
-        "pending_cash_withdrawal",
-        "pending_top_up",
-        "pending_transfer",
-        "pin_blocked",
-        "receiving_money",
-        "Refund_not_showing_up",
-        "request_refund",
-        "reverted_card_payment?",
-        "supported_cards_and_currencies",
-        "terminate_account",
-        "top_up_by_bank_transfer_charge",
-        "top_up_by_card_charge",
-        "top_up_by_cash_or_cheque",
-        "top_up_failed",
-        "top_up_limits",
-        "top_up_reverted",
-        "topping_up_by_card",
-        "transaction_charged_twice",
-        "transfer_fee_charged",
-        "transfer_into_account",
-        "transfer_not_received_by_recipient",
-        "transfer_timing",
-        "unable_to_verify_identity",
-        "verify_my_identity",
-        "verify_source_of_funds",
-        "verify_top_up",
-        "virtual_card_not_working",
-        "visa_or_mastercard",
-        "why_verify_identity",
-        "wrong_amount_of_cash_received",
-        "wrong_exchange_rate_for_cash_withdrawal",
-    ]
-
     if args.stream:
         asyncio.run(
             test_tc_async_stream(
                 prompt,
-                system_instructions,
-                classes,
                 args.cache_control,
             )
         )
@@ -295,8 +204,6 @@ if __name__ == "__main__":
         asyncio.run(
             test_tc_async(
                 prompt,
-                system_instructions,
-                classes,
                 args.cache_control,
             )
         )
