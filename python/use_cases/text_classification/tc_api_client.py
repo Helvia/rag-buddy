@@ -10,12 +10,14 @@ from decouple import config
 async def chat_completion(
     headers: Dict[str, str],
     remote_llm_url: str,
+    system_instructions: str,
     user_message: str,
     **kwargs: Any,
 ) -> Tuple[Any, Dict[str, str]]:
     # Base payload
     payload = {
         "remote_llm_url": remote_llm_url,
+        "system_instructions": system_instructions,
         "user_message": user_message,
     }
 
@@ -95,7 +97,7 @@ async def chat_completion(
 
 
 async def call_RB(
-    user_message, cache_control, stream
+    system_instructions, user_message, cache_control, stream
 ):
     helvia_rag_cache_token = config("RAG_BUDDY_TOKEN")
 
@@ -115,12 +117,13 @@ async def call_RB(
     headers = {**headers, **headers2}
 
     remote_llm_url = "https://api.openai.com/v1/chat/completions"
-    model = "gpt-4"
+    model = "gpt-4o"
     temperature = 0
 
     content, response_headers = await chat_completion(
         headers,
         remote_llm_url,
+        system_instructions,
         user_message,
         model=model,
         temperature=temperature,
@@ -136,12 +139,12 @@ async def call_RB(
 
 
 async def test_tc_async_stream(
-    prompt: str, cache_control: str
+    prompt: str, system_instructions: str, cache_control: str
 ):
     user_message = prompt
 
     completion, cache_hit = await call_RB(
-        user_message, cache_control, True
+        system_instructions, user_message, cache_control, True
     )
 
     if cache_hit is not None:
@@ -152,12 +155,13 @@ async def test_tc_async_stream(
 
 async def test_tc_async(
     prompt: str,
+    system_instructions: str,
     cache_control: str,
 ):
     user_message = prompt
 
     completion, cache_hit = await call_RB(
-        user_message, cache_control, False
+        system_instructions, user_message, cache_control, False
     )
 
     if cache_hit is not None:
@@ -193,10 +197,13 @@ if __name__ == "__main__":
     # Read prompt from standard input
     prompt = sys.stdin.readline().rstrip()
 
+    system_instructions = """You are an expert assistant in the field of customer service. Your task is to help workers in the customer service department of a company.\nYour task is to classify the customer's question in order to help the customer service worker to answer the question. In order to help the worker, you MUST respond with the name of one of the following classes you know.\nIn case you reply with something else, you will be penalized.\nThe classes are the following:"""
+
     if args.stream:
         asyncio.run(
             test_tc_async_stream(
                 prompt,
+                system_instructions,
                 args.cache_control,
             )
         )
@@ -204,6 +211,7 @@ if __name__ == "__main__":
         asyncio.run(
             test_tc_async(
                 prompt,
+                system_instructions,
                 args.cache_control,
             )
         )
