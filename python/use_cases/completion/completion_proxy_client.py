@@ -3,6 +3,7 @@ import asyncio
 import sys
 import openai
 from openai.types import Completion
+from openai.types.chat import ChatCompletion
 from decouple import config
 
 openai_api_key = config("OPENAI_API_KEY")
@@ -27,9 +28,10 @@ async def test_completion_async_stream(prompt: str, cache_control: str):
         default_headers=headers,
     )
 
-    raw_response = await client.completions.with_raw_response.create(
+
+    raw_response: ChatCompletion = await client.chat.completions.with_raw_response.create(
         prompt=prompt,
-        model="gpt-3.5-turbo-instruct",
+        model="gpt-4o",
         stream=True,
     )
 
@@ -78,18 +80,22 @@ async def test_completion_async(prompt: str, cache_control: str):
         default_headers=headers,
     )
 
-    raw_response = await client.completions.with_raw_response.create(
-        prompt=prompt,
-        model="gpt-3.5-turbo-instruct",
+    raw_response = await client.chat.completions.with_raw_response.create(
+        messages=[            
+            {"role": "user", "content": prompt
+             },
+        ],
+        model="gpt-4o",
+        stream=False
     )
 
     completion = raw_response.parse()
 
     # Assert response body
-    assert isinstance(completion, Completion)
+    assert isinstance(completion, ChatCompletion)
     assert len(completion.choices) > 0
-    assert completion.choices[0].text
-    print(completion.choices[0].text)
+    assert completion.choices[0].message
+    print(completion.choices[0].message)
     print(completion.model_dump_json(indent=2))
     print(raw_response.headers)
 

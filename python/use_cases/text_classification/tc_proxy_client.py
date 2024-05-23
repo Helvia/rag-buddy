@@ -6,6 +6,7 @@ from typing import List
 import openai
 from openai.types.chat import ChatCompletion
 from decouple import config
+from ..data.tc_templates import default_tc_template
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +17,7 @@ openai_api_key = config("OPENAI_API_KEY")
 
 
 async def test_tc_completion_async_stream(
-    prompt: str, cache_control: str
+    prompt: str,system_instructions: str, cache_control: str
     ):
 
     # Pass the cache control header, if provided
@@ -31,6 +32,10 @@ async def test_tc_completion_async_stream(
 
     headers = {"Helvia-RAG-Buddy-Token": helvia_rag_cache_token, **cache_control_header}
     
+    system_content = default_tc_template.format(
+        system_instructions=system_instructions
+    )
+
     client = openai.AsyncOpenAI(
         api_key=openai_api_key,
         base_url=base_url,
@@ -42,10 +47,12 @@ async def test_tc_completion_async_stream(
         messages=[
             {
                 "role": "system",
+                "content": system_content,
+
             },
             {"role": "user", "content": prompt},
         ],
-        model="gpt-4",
+        model="gpt-4o",
         temperature=0.0,
         stream=True,
     )
@@ -74,7 +81,7 @@ async def test_tc_completion_async_stream(
         cache_hit = int(cache_status) if cache_status not in ["None", None] else None
         print(f"\nCache hit: {cache_hit}\n")
 
-async def test_tc_completion_async(prompt: str, cache_control: str):
+async def test_tc_completion_async(prompt: str, system_instructions: str, cache_control: str):
     # Pass the cache control header, if provided
     cache_control_header = {}
     if cache_control:
@@ -88,6 +95,10 @@ async def test_tc_completion_async(prompt: str, cache_control: str):
     
     headers = {"Helvia-RAG-Buddy-Token": helvia_rag_cache_token, **cache_control_header}
 
+    system_content = default_tc_template.format(
+        system_instructions=system_instructions
+    )
+
     client = openai.AsyncOpenAI(
         api_key=openai_api_key,
         base_url=base_url,
@@ -99,10 +110,11 @@ async def test_tc_completion_async(prompt: str, cache_control: str):
         messages=[
             {
                 "role": "system",
+                "content": system_content,
             },
             {"role": "user", "content": prompt},
         ],
-        model="gpt-4",
+        model="gpt-4o",
         temperature=0.0,
         stream=False,
     )
@@ -135,6 +147,8 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
 
+    system_instructions = """You are an expert assistant in the field of customer service. Your task is to help workers in the customer service department of a company.\nYour task is to classify the customer's question in order to help the customer service worker to answer the question. In order to help the worker, you MUST respond with the name of one of the following classes you know.\nIn case you reply with something else, you will be penalized.\nThe classes are the following:"""
+
     # After parsing arguments:
     print("Please enter the prompt :")
 
@@ -144,12 +158,12 @@ if __name__ == "__main__":
     if args.stream:
         asyncio.run(
             test_tc_completion_async_stream(
-                prompt, args.cache_control
+                prompt, system_instructions, args.cache_control
             )
         )
     else:
         asyncio.run(
             test_tc_completion_async(
-                prompt, args.cache_control
+                prompt, system_instructions, args.cache_control
             )
         )

@@ -59,7 +59,7 @@ messages = [
 
 # Call OpenAI API
 completion = client.chat.completions.create(
-    model="gpt-3.5-turbo",  # Replace with the specific model name
+    model="gpt-4o",  # Replace with the specific model name
     messages=messages,
 )
 

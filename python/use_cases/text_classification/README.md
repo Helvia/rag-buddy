@@ -18,9 +18,9 @@
 
 - To display the script's usage information:
     1. Navigate to the python directory
-    2. Use `python use_cases/text_classification/tc_proxy_client.py --help`
+    2. Use `python -m use_cases.text_classification.tc_proxy_client --help`
 
 - To execute the script follow these steps:
     1. Navigate to the python directory
-    2. Use `python use_cases/text_classification/tc_proxy_client.py`
+    2. Use `python -m use_cases.text_classification.tc_proxy_client`
     3. Enter a prompt, for example `Credit card not valid anymore?`
