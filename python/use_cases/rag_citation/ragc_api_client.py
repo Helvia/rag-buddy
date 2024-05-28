@@ -152,7 +152,7 @@ async def rag_completion_async_stream(
     ):
     user_message = prompt
     system_intro = (
-        "You are a customer support agent of the e-banking application called Snappi."
+        "You are a customer support agent of the e-banking application called Piggy Bank Extraordinaire."
     )
 
     completion, cache_hit = await call_RAG(
@@ -172,7 +172,7 @@ async def rag_completion_async(
 ):
     user_message = prompt
     system_intro = (
-        "You are a customer support agent of the e-banking application called Snappi."
+        "You are a customer support agent of the e-banking application called Piggy Bank Extraordinaire."
     )
 
     completion, cache_hit = await call_RAG(
