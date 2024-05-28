@@ -125,7 +125,7 @@ async def call_RAG(system_intro, articles, user_message, cache_control, stream):
     headers = {**headers, **headers2}
 
     remote_llm_url = "https://api.openai.com/v1/chat/completions"
-    model = "gpt-4-turbo-preview"
+    model = "gpt-4o"
     temperature = 0
 
     content, response_headers = await chat_completion(
